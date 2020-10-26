@@ -6,7 +6,13 @@ const AuthError = require('../errors/authErr');
 const ValidationError = require('../errors/validationErr');
 const { SECRET_KEY } = require('../config');
 
-const { NOT_FOUND_USER, AUTHORIZATION_TRUE, MAX_AGE_COOKIE } = require('../variables/constants');
+const {
+  NOT_FOUND_USER,
+  AUTHORIZATION_TRUE,
+  MAX_AGE_COOKIE,
+  MAX_AGE_LOGOUT,
+  LOGOUT_TRUE,
+} = require('../variables/constants');
 
 module.exports.createUser = (req, res, next) => {
   const {
@@ -68,4 +74,16 @@ module.exports.login = (req, res, next) => {
       throw new AuthError(err.message);
     })
     .catch(next);
+};
+
+module.exports.logout = (req, res, next) => {
+  try {
+    res
+      .cookie('jwtCookie', '', {
+        maxAge: MAX_AGE_LOGOUT,
+      });
+    res.send({ message: LOGOUT_TRUE });
+  } catch (err) {
+    next(err);
+  }
 };

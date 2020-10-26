@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
@@ -14,6 +15,22 @@ const errorHandler = require('./middlewares/error-handler');
 const { checkSignup, checkSignin } = require('./helpers/validations');
 const { MANGOOSE_ADDRESS, PORT } = require('./config');
 
+const whitelist = [
+  'http://localhost:8080',
+  'https://ponomarenkosa.github.io/news-explorer-frontend',
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
 const app = express();
 
 mongoose.connect(MANGOOSE_ADDRESS, {
@@ -24,6 +41,7 @@ mongoose.connect(MANGOOSE_ADDRESS, {
 app.use(limiter);
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors(corsOptions));
 app.use(helmet());
 
 app.use(requestLogger);
