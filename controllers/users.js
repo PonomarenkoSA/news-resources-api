@@ -8,7 +8,6 @@ const { SECRET_KEY } = require('../config');
 
 const {
   NOT_FOUND_USER,
-  AUTHORIZATION_TRUE,
   MAX_AGE_COOKIE,
   MAX_AGE_LOGOUT,
   LOGOUT_TRUE,
