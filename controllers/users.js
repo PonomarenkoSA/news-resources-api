@@ -11,6 +11,7 @@ const {
   MAX_AGE_COOKIE,
   MAX_AGE_LOGOUT,
   LOGOUT_TRUE,
+  UNIQUE_ERROR,
 } = require('../variables/constants');
 
 module.exports.createUser = (req, res, next) => {
@@ -32,7 +33,7 @@ module.exports.createUser = (req, res, next) => {
       }))
       .catch((err) => {
         if (err.name === 'ValidationError') {
-          throw new ValidationError(err.message);
+          throw new ValidationError(UNIQUE_ERROR);
         } else {
           throw new Error();
         }

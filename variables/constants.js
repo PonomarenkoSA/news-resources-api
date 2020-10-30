@@ -9,6 +9,7 @@ module.exports = {
   NOT_VALID_EMAIL: 'Невалидный почтовый адрес',
   NOT_VALID_LINK: 'Невалидная ссылка',
   INTERNAL_ERROR: 'На сервере произошла ошибка',
+  UNIQUE_ERROR: 'Такой пользователь уже есть',
   MAX_AGE_COOKIE: 3600000 * 24 * 7,
   MAX_AGE_LOGOUT: 0,
   LOGOUT_TRUE: 'Пользователь вышел из системы',
