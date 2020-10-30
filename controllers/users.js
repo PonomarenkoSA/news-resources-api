@@ -82,6 +82,8 @@ module.exports.logout = (req, res, next) => {
     res
       .cookie('jwtCookie', '', {
         maxAge: MAX_AGE_LOGOUT,
+        sameSite: 'None',
+        secure: true,
       });
     res.send({ message: LOGOUT_TRUE });
   } catch (err) {
