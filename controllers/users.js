@@ -66,10 +66,10 @@ module.exports.login = (req, res, next) => {
         .cookie('jwtCookie', token, {
           maxAge: MAX_AGE_COOKIE,
           httpOnly: true,
-          sameSite: 'None',
+          sameSite: 'none',
           secure: true,
-        });
-      res.send({ message: AUTHORIZATION_TRUE });
+        })
+        .end();
     })
     .catch((err) => {
       throw new AuthError(err.message);
@@ -81,8 +81,9 @@ module.exports.logout = (req, res, next) => {
   try {
     res
       .cookie('jwtCookie', '', {
+        httpOnly: true,
         maxAge: MAX_AGE_LOGOUT,
-        sameSite: 'None',
+        sameSite: 'none',
         secure: true,
       });
     res.send({ message: LOGOUT_TRUE });
