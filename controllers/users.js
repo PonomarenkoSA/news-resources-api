@@ -67,6 +67,7 @@ module.exports.login = (req, res, next) => {
           maxAge: MAX_AGE_COOKIE,
           httpOnly: true,
           sameSite: 'None',
+          secure: true,
         });
       res.send({ message: AUTHORIZATION_TRUE });
     })
