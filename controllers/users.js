@@ -66,7 +66,7 @@ module.exports.login = (req, res, next) => {
           maxAge: MAX_AGE_COOKIE,
           httpOnly: true,
           sameSite: 'none',
-          secure: true,
+          // secure: true,
         })
         .end();
     })
@@ -83,7 +83,7 @@ module.exports.logout = (req, res, next) => {
         httpOnly: true,
         maxAge: MAX_AGE_LOGOUT,
         sameSite: 'none',
-        secure: true,
+        // secure: true,
       });
     res.send({ message: LOGOUT_TRUE });
   } catch (err) {
