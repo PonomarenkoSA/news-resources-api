@@ -66,7 +66,7 @@ module.exports.login = (req, res, next) => {
         .cookie('jwtCookie', token, {
           maxAge: MAX_AGE_COOKIE,
           httpOnly: true,
-          sameSite: true,
+          // sameSite: true,
         });
       res.send({ message: AUTHORIZATION_TRUE });
     })
