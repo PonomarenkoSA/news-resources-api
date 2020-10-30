@@ -17,7 +17,7 @@ const { MANGOOSE_ADDRESS, PORT } = require('./config');
 
 const whitelist = [
   'http://localhost:8080',
-  'https://ponomarenkosa.github.io/news-explorer-frontend',
+  'https://ponomarenkosa.github.io',
 ];
 
 const corsOptions = {
