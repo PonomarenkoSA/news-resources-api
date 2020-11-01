@@ -32,7 +32,7 @@ module.exports.createArticle = (req, res, next) => {
       image,
       owner: req.user._id,
     })
-      .then(() => res.send({
+      .then((article) => res.send({
         keyword,
         title,
         text,
@@ -40,6 +40,7 @@ module.exports.createArticle = (req, res, next) => {
         source,
         link,
         image,
+        id: article._id,
       }))
       .catch((err) => {
         if (err.name === 'ValidationError') {
